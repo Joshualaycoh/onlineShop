@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+.header {
+    background-color: rgb(238, 77, 45);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.header ul li {
+    list-style: none;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+}
+
+.header li {
+    display: inline-block;
+    margin-right: 30px;
+}
+.main {
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 70px;
+}
+
+.card {
+    border: none;
+    max-width: 300px;
+    text-align: center;
+    border:1px solid rgb(231, 231, 231);
+    box-sizing: border-box;
+    
+}
+
+.card img {
+    width: 180px;
+}
+
+.card p {
+    font-size: 14px;
+}
+
+.card a {
+    text-decoration: none;
+    color: white;
+    background-color: mediumseagreen;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.details {
+    padding: 25px;
+}
+
+.price {
+    color: rgb(238, 77, 45);
+    font-weight: 600;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(238, 77, 45);
+    color: white;
+    position: fixed;
+    bottom: 0;
+    padding: 20px;
+    width: 100%;
+}
+
+
+
+
+@media(max-width: 400px){
+    .header {
+        display: flex;
+        flex-direction: column;
+    }
+    .footer {
+        flex-direction: column;
+    }
+}
+
