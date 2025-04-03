@@ -17,7 +17,6 @@ if (isset($_POST['submit'])) {
     $checkResult = mysqli_query($conn, $checkQuery);
 
     if (mysqli_num_rows($checkResult) > 0) {
-        // Display an error message if a duplicate entry is found
         echo "Name or email already exists!";
     } else {
         // Insert data only if the name and email are unique

@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="/login.php">login</a></li>
                 <li><a href="/registration.php">signup</a></li>
-                <li style="margin-right: 0;"><a href="">dashboard</a></li>
+                <li style="margin-right: 0;"><a href="/admin/dashboard.php">dashboard</a></li>
             </ul>
         </nav>
     </header>

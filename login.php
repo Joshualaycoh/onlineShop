@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start the session
+session_start();
 echo "Welcome to your dashboard, " . $_SESSION['name'];
 include "db.php";
 
@@ -20,18 +20,15 @@ if (isset($_POST['submit'])) {
         // Validate the password using password_verify
         if (password_verify($password, $row['password'])) {
             // Set session variables
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['name'] = $row['name'];
-            $_SESSION['user_id'] = $row['email'];
-            $_SESSION['role'] = $row['role'];
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['user_name'] = $row['name'];
+            $_SESSION['user_role'] = $row['role'];
 
-            // Redirect based on role
-            if ($row['role'] == 'admin') {
+            if ($_SESSION['user_role'] == 'admin') {
                 echo "Welcome Admin!";
-                header("Location: admin_dashboard.php");
+                header("Location: admin/dashboard.php");
             } else {
                 echo "Welcome User!";
-                header("Location: dashboard.php");
             }
         } else {
             echo "Wrong password!";
