@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
     <div class="container">
         <a href="/index.php">Shopping</a>
         <div class="register">
-            <form action="" method="post">
+            <form action="registration.php" method="post">
                 <input type="text" name="name" placeholder="Enter your name">
                 <input type="email" name="email" placeholder="Enter your email">
                 <input type="password" name="password" placeholder="Enter your password">

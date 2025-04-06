@@ -1,6 +1,6 @@
 <?php
 session_start();
-echo "Welcome to your dashboard, " . $_SESSION['name'];
+
 include "db.php";
 
 if (isset($_POST['submit'])) {
@@ -25,10 +25,11 @@ if (isset($_POST['submit'])) {
             $_SESSION['user_role'] = $row['role'];
 
             if ($_SESSION['user_role'] == 'admin') {
-                echo "Welcome Admin!";
                 header("Location: admin/dashboard.php");
+                exit();
             } else {
-                echo "Welcome User!";
+                header("Location: index.php");
+                exit();
             }
         } else {
             echo "Wrong password!";

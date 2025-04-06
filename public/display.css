@@ -1,0 +1,114 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5; /* Light background for a clean look */
+    margin: 0;
+    padding: 20px;
+    padding-top: 5px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #ff6600; /* Shopee's signature orange */
+    color: white;
+}
+
+thead th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #ddd; /* Subtle border for rows */
+}
+
+tbody tr:hover {
+    background-color: #ffe6d8; /* Light orange hover effect for rows */
+}
+
+tbody td {
+    padding: 10px 15px;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Image styles */
+tbody td img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px; /* Rounded corners for images */
+}
+
+/* Update and Delete button styles */
+.update, .delete {
+    display: inline-block;
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.update {
+    background-color: #ffcc00; /* Bright yellow for update */
+}
+
+.update:hover {
+    background-color: #e6b800; /* Slightly darker yellow on hover */
+}
+
+.delete {
+    background-color: #ff4d4d; /* Red for delete */
+}
+
+.delete:hover {
+    background-color: #e60000; /* Slightly darker red on hover */
+}
+
+.back {
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: 600
+}
+
+
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    table {
+        font-size: 12px; /* Reduce table font size for smaller screens */
+    }
+
+    tbody td img {
+        width: 50px;
+        height: 50px; /* Smaller images */
+    }
+
+    .update, .delete {
+        padding: 6px 10px; /* Adjust button size */
+        font-size: 12px; /* Smaller button text */
+    }
+}
