@@ -74,7 +74,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../public/dashboard.css">
 </head>
 
 <body>
@@ -82,8 +82,10 @@ $conn->close();
         <div class="dashboard_sidebar">
             <ul>
                 <li><a href="addproduct.php">Add Product</a></li>
-                <li><a href="displayproduct.php">View Order</a></li>
+                <li><a href="displayproduct.php">View Products</a></li>
+                <li><a href="vieworder.php">View Orders</a></li>
                 <li><a href="../logout.php">Logout</a></li>
+            </ul>
             </ul>
         </div>
         <div class="dashboard_add">
