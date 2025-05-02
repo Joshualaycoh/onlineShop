@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
     $image = $_FILES['image']['name'];
     $temp_location = $_FILES['image']['tmp_name'];
     $upload_location = "../image/";
-    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+    $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
 
     if (!in_array($_FILES['image']['type'], $allowed_types)) {
         die("Invalid file type! Only JPG, PNG, and GIF are allowed.");

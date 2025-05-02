@@ -28,6 +28,7 @@ if (isset($_POST['submit'])) {
         if (!$result) {
             echo "Error: {$conn->error}";
         } else {
+            header("Location: login.php");
             echo "Registered Successfully";
         }
     }
