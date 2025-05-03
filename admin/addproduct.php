@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../db.php"; // Adjust the path if necessary
+include "../db.php";
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -25,23 +25,25 @@ if (!$result1) {
 
 // Handle form submission
 if (isset($_POST['submit'])) {
-
-
-    // Validate and sanitize inputs
     $name = htmlspecialchars(trim($_POST['name']));
     $description = htmlspecialchars(trim($_POST['description']));
     $price = filter_var($_POST['price'], FILTER_VALIDATE_FLOAT);
     $stock = filter_var($_POST['stock'], FILTER_VALIDATE_INT);
-    $category_name = $_POST['category_name']; // Get the category name
+    $category_id = intval($_POST['category_id']); // Using category_id for insertion
 
     // Validate file upload
     $image = $_FILES['image']['name'];
     $temp_location = $_FILES['image']['tmp_name'];
     $upload_location = "../image/";
-    $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    $allowed_types = ['image/jpeg', 'image/png', 'image/webp'];
 
     if (!in_array($_FILES['image']['type'], $allowed_types)) {
-        die("Invalid file type! Only JPG, PNG, and GIF are allowed.");
+        die("Invalid file type! Only JPG, PNG, and WebP are allowed.");
+    }
+
+    // Ensure upload directory exists
+    if (!is_dir($upload_location)) {
+        mkdir($upload_location, 0755, true);
     }
 
     // Move uploaded file
@@ -50,9 +52,9 @@ if (isset($_POST['submit'])) {
         die("Failed to upload the image. Please try again.");
     }
 
-    // Insert product into the database using prepared statements
-    $stmt = $conn->prepare("INSERT INTO products (name, description, price, stock, image, category_name) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $name, $description, $price, $stock, $image, $category_name); // Corrected bind_param
+    // Insert product using prepared statement
+    $stmt = $conn->prepare("INSERT INTO products (name, description, price, stock, image, category_id) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssdisi", $name, $description, $price, $stock, $image, $category_id);
 
     if ($stmt->execute()) {
         echo "<div id='success-message' class='message'>Product added successfully!</div>";
@@ -64,7 +66,6 @@ if (isset($_POST['submit'])) {
     $stmt->close();
 }
 $conn->close();
-
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +74,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Admin Dashboard - Add Product</title>
     <link rel="stylesheet" href="../public/dashboard.css">
 </head>
 
@@ -86,7 +87,6 @@ $conn->close();
                 <li><a href="vieworder.php">View Orders</a></li>
                 <li><a href="../logout.php">Logout</a></li>
             </ul>
-            </ul>
         </div>
         <div class="dashboard_add">
             <div class="card">
@@ -95,20 +95,17 @@ $conn->close();
                     <textarea name="description" placeholder="Enter Product Description!" required></textarea>
                     <input type="number" name="price" placeholder="Enter Price here!" step="0.01" required>
                     <input type="number" name="stock" placeholder="Enter Stock here!" required>
-                    <h3>Upload Image here!</h3>
-                    <input type="file" name="image" required>
 
-                    <select name="category_name">
-                        <option>Select Category</option>
-                        <?php
-                        if ($result1) {
-                            while ($row = mysqli_fetch_assoc($result1)) { ?>
-                                <option value="<?php echo $row['name']; ?>">
-                                    <?php echo $row['name']; ?>
-                                </option>
-                        <?php }
-                        }
-                        ?>
+                    <h3>Upload Image here!</h3>
+                    <input type="file" name="image" accept="image/*" required>
+
+                    <select name="category_id" required>
+                        <option value="">Select Category</option>
+                        <?php while ($row = mysqli_fetch_assoc($result1)) { ?>
+                            <option value="<?php echo $row['id']; ?>">
+                                <?php echo htmlspecialchars($row['name']); ?>
+                            </option>
+                        <?php } ?>
                     </select>
 
                     <input class="btn" type="submit" name="submit" value="Add Product">
@@ -116,6 +113,7 @@ $conn->close();
             </div>
         </div>
     </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const message = document.querySelector('.message');

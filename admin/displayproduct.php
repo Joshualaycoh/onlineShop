@@ -14,8 +14,10 @@ if ($_SESSION['user_role'] !== 'admin') {
     exit();
 }
 
-// Fetch products from the database
-$sql = "SELECT * FROM products";
+// Fetch products along with their category name from the database
+$sql = "SELECT p.id, p.name, p.description, p.price, p.stock, p.image, c.name AS category_name 
+        FROM products p 
+        JOIN categories c ON p.category_id = c.id";
 $result = mysqli_query($conn, $sql);
 
 // Check if the query was successful
