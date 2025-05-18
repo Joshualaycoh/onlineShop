@@ -18,6 +18,10 @@ onlineShop is a basic e-commerce web application that allows users to browse pro
 -   **Dynamic Content:** Uses PHP to dynamically generate web pages.
 -   **User Order History:** Displays user’s order history.
 
+## Hosted Link
+
+You can view my portfolio here: [https://lagunabazaar.infinityfreeapp.com](https://lagunabazaar.infinityfreeapp.com)
+
 ## Technologies Used
 
 -   **PHP:** Backend scripting language for server-side logic.
